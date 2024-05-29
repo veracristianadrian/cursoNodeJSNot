@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;1,200&display=swap');
+
+
+
 h2{
     background-color: rgb(169, 243, 218);
     color: black;
@@ -8,4 +12,5 @@ h1{
 }
 body{
     color: blueviolet;
+    font: 200 13px 'Roboto Mono', monospace ;
 }
