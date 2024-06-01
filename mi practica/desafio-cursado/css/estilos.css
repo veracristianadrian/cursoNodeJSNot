@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wdth,wght@0,75..125,100..900;1,75..125,100..900&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+/* color del fondo */
+
+
+body{
+
+    background-color: #edf7ff;}
+
+h1{
+    color:#0a2ff1;
+    font-family: "MuseoModerno", sans-serif;
+    font-weight: bold;
+    font-size: 117px; 
+}
+h4{
+    color: #0a2ff1;
+    font-size: 52px;
+    font-family: "Asap", sans-serif;
+    font-weight: 100;
+}
+section{
+    color: #04146c;
+    font-size: 33px;
+    font-family: "Asap", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:100;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 75;
+}
+h5{
+    color:#0a2ff1;
+    font-family: "MuseoModerno", sans-serif;
+    font-weight: bold;
+    font-size: 48px; 
+}
+footer{
+    color: #04146c;
+    font-size: 33px;
+    font-family: "Asap", sans-serif;
+    font-weight: bold;       
+}
+aside{
+    color: #8a9af1;
+    
+    font-family: "MuseoModerno", sans-serif;
+    font-weight: bold;
+    font-size: 198px;
+
+}
+
+
+/*  font-family
+    font-size
+    color
+    background-color. */
+   
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+
+.asap-<uniquifier> {
+  font-family: "Asap", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+    117
+} */
