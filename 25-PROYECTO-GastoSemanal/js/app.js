@@ -20,8 +20,13 @@ class Presupuesto{
 
     nuevoGasto(gasto){
      this.gastos = [...this.gastos, gasto];   
-     console.log(this.gastos);
+     this.calcularRestante();
     }
+    calcularRestante(){
+        const gastado = this.gastos.reduce((total,gasto)=> total + gasto.cantidad, 0);
+        this.restante= this.presupuesto - gastado;
+    }
+
 }
 
 class UI{
@@ -46,17 +51,51 @@ class UI{
             divMensaje.classList.add('alert-success');// le da un estilo de tipo correcto o verde
         }
         //mensaje de error 
-    divMensaje.textContent = mensaje;
+        divMensaje.textContent = mensaje;
 
-    // insertar en el html
-    document.querySelector('.primario').insertBefore(divMensaje, formulario);
-        //quitar del html 
-    setTimeout(() => {
-        divMensaje.remove();
-    }, 3000);
+        // insertar en el html
+        document.querySelector('.primario').insertBefore(divMensaje, formulario);
+            //quitar del html 
+        setTimeout(() => {
+            divMensaje.remove();
+        }, 3000);
     }
     
+    agregarGastoListado(gastos){
 
+        this.limpiarHTML();
+
+        // iterar sobre los gastos 
+        gastos.forEach(gasto => {
+            
+            const { cantidad, nombre, id} = gasto;
+
+            //crear un LI
+            const nuevoGasto = document.createElement('li');
+            nuevoGasto.className = 'list-group-item d-flex justify-content-between align-items-center';  //clases de botstrap
+            nuevoGasto.dataset.id = id;
+            //Agregar el HTML del gasto
+            nuevoGasto.innerHTML =`${nombre} <span class="badge badge-primary badge-pill"> $ ${cantidad} </span>
+            
+            `
+            //Boton para borrar el gasto
+            const btnBorrar = document.createElement('button');
+            btnBorrar.classList.add('btn', 'btn-danger', 'borrar-gasto');
+            btnBorrar.innerHTML = 'Borrar &times;'
+            nuevoGasto.appendChild(btnBorrar);
+            //agregar al HTML
+            gastoListado.appendChild(nuevoGasto);
+
+        });
+    }
+    limpiarHTML(){
+        while(gastoListado.firstChild){
+            gastoListado.removeChild(gastoListado.firstChild);
+        }
+    }
+    actualizarRestante(restante){
+        document.querySelector('#restante').textContent = restante;
+    }
     
 
 }
@@ -67,6 +106,8 @@ const  ui = new UI();
 let presupuesto;
 //=======================================================================
 // funciones
+
+
 function preguntarPresupuesto(){
     const presupuestoUsuario = prompt ('Cual es tu presupuesto?');
 
@@ -99,9 +140,19 @@ function agregarGasto(e){
         ui.imprimirAlerta('Cantidad no valida','error');
         return;
     }
+
     //generar un objeto con el gasto es de tipo llave valor pero como nombre y cantidad son el mismo nombre no hace falta la sintaxis
     const gasto = { nombre, cantidad, id: Date.now() } 
+
     // añade un nuevo gasto
     presupuesto.nuevoGasto(gasto);
-    console.log(gasto);
+    //mensaje de todo bien
+    ui.imprimirAlerta('gasto agregado correctamente');
+
+    //Imprimir los gastos 
+    const {gastos, restante} = presupuesto;
+    ui.agregarGastoListado(gastos);
+    ui.actualizarRestante(restante);
+    //Reinicia el formulario
+    formulario.reset();
 }
